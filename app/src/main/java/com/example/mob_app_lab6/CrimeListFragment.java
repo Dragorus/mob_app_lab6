@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,7 +57,17 @@ public class CrimeListFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
+        if (item.getItemId() == R.id.new_crime) {
+            Crime crime = new Crime();
+            CrimeLab.getCrimeLab(getActivity()).addCrime(crime);
+            Intent intent = CrimePagerActivity.newIntent(getActivity(), crime.getID());
+            startActivity(intent);
+            return true;
+        }
+        else  {
+            return super.onOptionsItemSelected(item);
+        }
+        /*switch (item.getItemId()) {
             case R.id.new_crime:
                 Crime crime = new Crime();
                 CrimeLab.getCrimeLab(getActivity()).addCrime(crime);
@@ -63,7 +76,7 @@ public class CrimeListFragment extends Fragment {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }
+        }*/
     }
 
     @Nullable
@@ -139,6 +152,8 @@ public class CrimeListFragment extends Fragment {
         public int getItemCount() {
             return mCrimes.size();
         }
+
+
     }
     private  void  updateUI(){
         CrimeLab crimeLab = CrimeLab.getCrimeLab(getActivity());
@@ -148,4 +163,8 @@ public class CrimeListFragment extends Fragment {
             mCrimeRecyclerView.setAdapter(mAdapter);}
         else mAdapter.notifyDataSetChanged();
     }
+
+
+
+
 }

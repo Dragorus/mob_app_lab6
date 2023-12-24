@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.example.mob_app_lab6.database.database.CrimeDbSchema.CrimeTable;
+import com.example.mob_app_lab6.database.database.CrimeCursorWrapper;
+import com.example.mob_app_lab6.database.database.CrimeBaseHelper;
+
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
 
